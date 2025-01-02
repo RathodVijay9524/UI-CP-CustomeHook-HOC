@@ -9,7 +9,7 @@ const authService = {
     } catch (error) {
       if (error.response) {
         console.error('Error response:', error.response.data);
-        throw new Error(error.response.data.message);
+        throw new Error(error.response.data.errorMessage);
       } else if (error.request) {
         console.error('Request error:', error.request);
         throw new Error('Network error');
@@ -23,14 +23,14 @@ const authService = {
   fetchUserData: async () => {
     try {
       const token = localStorage.getItem('jwtToken');
-      console.log("token - ",token)
+      console.log("token - ", token);
       const response = await axiosInstance.get('/auth/current-user');
       console.log('Fetch user data:', response.data);
       return response.data.data;
     } catch (error) {
       if (error.response) {
         console.error('Error response:', error.response.data);
-        throw new Error(error.response.data.message);
+        throw new Error(error.response.data.errorMessage);
       } else if (error.request) {
         console.error('Request error:', error.request);
         throw new Error('Network error');

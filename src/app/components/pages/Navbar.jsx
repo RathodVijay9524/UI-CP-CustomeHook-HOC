@@ -15,6 +15,7 @@ const Navbar = () => {
     if (isAuthenticated) {
       dispatch(logout()); // Dispatch logout action to clear user state and tokens
     } else {
+
       navigate('/login'); // Navigate to login page
     }
   };
