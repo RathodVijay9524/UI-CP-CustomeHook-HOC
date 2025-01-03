@@ -5,8 +5,6 @@ import AdminHome from './admin/AdminHome';
 import AdminActiveUser from './admin/AdminActiveUser';
 import SuperUserDashboard from './user/SuperUserDashboard';
 import SideBar from './admin/AdminSideBar';
-
-
 const BaseAdmin = () => {
   return (
     <div>

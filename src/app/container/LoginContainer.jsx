@@ -8,7 +8,7 @@ import LoginForm from '../components/form/LoginForm';
 
 const LoginContainer = () => {
   const initialState = { usernameOrEmail: '', password: '' };
-  const [values, handleChange] = useForm(initialState);
+  const { values, handleChange, resetForm } = useForm(initialState); // Destructuring useForm return values correctly
   const { loading, error, user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -65,5 +65,5 @@ const navigateRole = (roles, navigate) => {
   }
 };
 
-
 export default LoginContainer;
+
