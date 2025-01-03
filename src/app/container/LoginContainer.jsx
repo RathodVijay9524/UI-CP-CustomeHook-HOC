@@ -2,16 +2,18 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, setUser } from '../store/redux/authSlice';
-import { useNavigate } from 'react-router-dom';
 import useForm from '../hook/useForm';
 import LoginForm from '../components/form/LoginForm';
+import { useNavigate, useLocation } from 'react-router-dom'; // Import useLocation
 
 const LoginContainer = () => {
   const initialState = { usernameOrEmail: '', password: '' };
-  const [values, handleChange] = useForm(initialState);
+  const { values, handleChange, resetForm } = useForm(initialState); // Destructuring useForm return values correctly
   const { loading, error, user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation(); // Initialize useLocation
+  const message = location.state ? location.state.message : ""; // Retrieve the message from location state
 
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
@@ -43,11 +45,17 @@ const LoginContainer = () => {
       loading={loading}
       error={error ? { errorMessage: error } : null} // Ensure the error is always an object
       handleSubmit={handleSubmit}
+      message={message} // Pass the success message to LoginForm
     />
   );
 };
 
 const navigateRole = (roles, navigate) => {
+  if (!roles || !Array.isArray(roles)) {
+    navigate('/not-authorized');
+    return;
+  }
+
   const roleNames = roles.map(role => role.name);
   if (roleNames.includes('ROLE_ADMIN')) {
     navigate('/admin');
@@ -61,3 +69,4 @@ const navigateRole = (roles, navigate) => {
 };
 
 export default LoginContainer;
+

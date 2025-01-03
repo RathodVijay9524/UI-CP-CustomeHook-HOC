@@ -1,18 +1,25 @@
-// useForm.js
 import { useState } from 'react';
 
-const useForm = (initialValues) => {
-  const [values, setValues] = useState(initialValues);
+const useForm = (initialState) => {
+  const [values, setValues] = useState(initialState);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setValues({
-      ...values,
-      [name]: value
-    });
+    setValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
   };
 
-  return [values, handleChange];
+  const resetForm = () => {
+    setValues(initialState);
+  };
+
+  return {
+    values,
+    handleChange,
+    resetForm,
+  };
 };
 
 export default useForm;
