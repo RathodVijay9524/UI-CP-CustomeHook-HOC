@@ -1,8 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import axiosInstance from '../service/axiosInstance';
 import checkAvailability from '../service/user-service';
 import useForm from './useForm'; // Adjust path if necessary
 import useValidation from './useValidation'; // Adjust path if necessary
+import { useDispatch } from 'react-redux'; // Import useDispatch from redux
+import { resetSuccessMessage } from '../store/redux/authSlice'; // Import resetSuccessMessage action
 
 const useRegistration = (registrationEndpoint) => {
   const initialFormState = {
@@ -21,6 +25,8 @@ const useRegistration = (registrationEndpoint) => {
   const [backendErrors, setBackendErrors] = useState({});
   const [usernameAvailable, setUsernameAvailable] = useState(null);
   const [emailAvailable, setEmailAvailable] = useState(null);
+  const navigate = useNavigate(); // Initialize useNavigate
+  const dispatch = useDispatch(); // Initialize useDispatch
 
   useEffect(() => {
     const fieldNames = Object.keys(values);
@@ -37,7 +43,9 @@ const useRegistration = (registrationEndpoint) => {
       setSuccess(response.data);
       setError(null);
       setBackendErrors({});
-      resetForm(); // Reset form after successful registration
+      resetForm();
+      navigate('/login', { state: { message: response.data.message || 'Your account registered successfully. Verify & activate your account.' } });
+      dispatch(resetSuccessMessage()); // Reset success message on navigate
     } catch (err) {
       setLoading(false);
       setError(err.response && err.response.data ? err.response.data : 'Registration failed.');
@@ -47,6 +55,7 @@ const useRegistration = (registrationEndpoint) => {
       }
     }
   };
+
 
   const checkUsernameAvailability = async () => {
     if (values.username) {

@@ -2,9 +2,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, setUser } from '../store/redux/authSlice';
-import { useNavigate } from 'react-router-dom';
 import useForm from '../hook/useForm';
 import LoginForm from '../components/form/LoginForm';
+import { useNavigate, useLocation } from 'react-router-dom'; // Import useLocation
 
 const LoginContainer = () => {
   const initialState = { usernameOrEmail: '', password: '' };
@@ -12,6 +12,8 @@ const LoginContainer = () => {
   const { loading, error, user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation(); // Initialize useLocation
+  const message = location.state ? location.state.message : ""; // Retrieve the message from location state
 
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
@@ -43,6 +45,7 @@ const LoginContainer = () => {
       loading={loading}
       error={error ? { errorMessage: error } : null} // Ensure the error is always an object
       handleSubmit={handleSubmit}
+      message={message} // Pass the success message to LoginForm
     />
   );
 };

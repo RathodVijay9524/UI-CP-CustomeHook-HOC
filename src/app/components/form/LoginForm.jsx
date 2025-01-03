@@ -2,12 +2,13 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const LoginForm = ({ usernameOrEmail, setUsernameOrEmail, password, setPassword, loading, error, handleSubmit }) => (
+const LoginForm = ({ usernameOrEmail, setUsernameOrEmail, password, setPassword, loading, error, handleSubmit, message }) => (
   <div className="container mt-5">
     <div className="row justify-content-center">
       <div className="col-md-6">
         <div className="card shadow p-4">
           <h2 className="card-title text-center mb-4">Login</h2>
+          {message && <p className="text-success">{message}</p>} {/* Display the success message */}
           {error && <p className="text-danger">{error.errorMessage}</p>}
           <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -54,6 +55,7 @@ LoginForm.propTypes = {
   loading: PropTypes.bool.isRequired,
   error: PropTypes.object,
   handleSubmit: PropTypes.func.isRequired,
+  message: PropTypes.string, // Add message propType
 };
 
 export default LoginForm;

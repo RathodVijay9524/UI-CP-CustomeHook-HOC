@@ -41,6 +41,9 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       state.logs.push(`User ${action.payload.username} set successfully.`);
     },
+    resetSuccessMessage: (state) => {
+      state.successMessage = '';
+    },
     logout: (state) => {
       state.user = null;
       state.token = null;
@@ -78,6 +81,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { setUser, logout } = authSlice.actions;
+export const { setUser, logout, resetSuccessMessage } = authSlice.actions;
 
 export default authSlice.reducer;
