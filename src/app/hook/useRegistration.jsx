@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axiosInstance from '../service/axiosInstance';
 import checkAvailability from '../service/user-service';
 import useForm from './useForm'; // Adjust path if necessary
+import useValidation from './useValidation'; // Adjust path if necessary
 
 const useRegistration = (registrationEndpoint) => {
   const initialFormState = {
@@ -11,13 +12,20 @@ const useRegistration = (registrationEndpoint) => {
     password: '',
     phoNo: '',
   };
-  const { values, handleChange, resetForm } = useForm(initialFormState); // Integrate useForm
+
+  const { values, handleChange, resetForm } = useForm(initialFormState);
+  const { errors, validate, handleBlur, touched } = useValidation({}); // Initialize validation state
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [backendErrors, setBackendErrors] = useState({});
   const [usernameAvailable, setUsernameAvailable] = useState(null);
   const [emailAvailable, setEmailAvailable] = useState(null);
+
+  useEffect(() => {
+    const fieldNames = Object.keys(values);
+    fieldNames.forEach((field) => validate(field, values[field]));
+  }, [values]); // Call validate function whenever values change
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,6 +75,9 @@ const useRegistration = (registrationEndpoint) => {
     checkEmailAvailability,
     usernameAvailable,
     emailAvailable,
+    errors,
+    handleBlur,
+    touched,
   };
 };
 

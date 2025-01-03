@@ -1,5 +1,3 @@
-
-// LoginForm.js (Presentation Component)
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -58,7 +56,4 @@ LoginForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
 };
 
-
-
 export default LoginForm;
-

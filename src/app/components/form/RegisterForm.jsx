@@ -19,6 +19,9 @@ const RegisterForm = () => {
     checkEmailAvailability,
     usernameAvailable,
     emailAvailable,
+    errors,
+    handleBlur,
+    touched,
   } = useRegistration(registrationEndpoint); // Use useRegistration with the endpoint
 
   useEffect(() => {
@@ -46,8 +49,10 @@ const RegisterForm = () => {
                   name="name"
                   value={values.name}
                   onChange={handleChange}
+                  onBlur={() => handleBlur('name')}
                 />
                 {backendErrors.name && <p className="text-danger">{backendErrors.name}</p>}
+                {touched.name && errors.name && <p className="text-danger">{errors.name}</p>}
               </div>
               <div className="form-group">
                 <label>Username:</label>
@@ -57,13 +62,17 @@ const RegisterForm = () => {
                   name="username"
                   value={values.username}
                   onChange={handleChange}
-                  onBlur={checkUsernameAvailability}
+                  onBlur={() => {
+                    handleBlur('username');
+                    checkUsernameAvailability();
+                  }}
                 />
                 {usernameAvailable === false && (
                   <p className="text-danger">Username already exists! Choose another username.</p>
                 )}
                 {usernameAvailable === true && <p className="text-success">Username is available</p>}
                 {backendErrors.username && <p className="text-danger">{backendErrors.username}</p>}
+                {touched.username && errors.username && <p className="text-danger">{errors.username}</p>}
               </div>
               <div className="form-group">
                 <label>Email:</label>
@@ -73,13 +82,17 @@ const RegisterForm = () => {
                   name="email"
                   value={values.email}
                   onChange={handleChange}
-                  onBlur={checkEmailAvailability}
+                  onBlur={() => {
+                    handleBlur('email');
+                    checkEmailAvailability();
+                  }}
                 />
                 {emailAvailable === false && (
                   <p className="text-danger">Email already exists! Choose another email.</p>
                 )}
                 {emailAvailable === true && <p className="text-success">Email is available</p>}
                 {backendErrors.email && <p className="text-danger">{backendErrors.email}</p>}
+                {touched.email && errors.email && <p className="text-danger">{errors.email}</p>}
               </div>
               <div className="form-group">
                 <label>Password:</label>
@@ -89,8 +102,10 @@ const RegisterForm = () => {
                   name="password"
                   value={values.password}
                   onChange={handleChange}
+                  onBlur={() => handleBlur('password')}
                 />
                 {backendErrors.password && <p className="text-danger">{backendErrors.password}</p>}
+                {touched.password && errors.password && <p className="text-danger">{errors.password}</p>}
               </div>
               <div className="form-group">
                 <label>Phone Number:</label>
@@ -100,8 +115,10 @@ const RegisterForm = () => {
                   name="phoNo"
                   value={values.phoNo}
                   onChange={handleChange}
+                  onBlur={() => handleBlur('phoNo')}
                 />
                 {backendErrors.phoNo && <p className="text-danger">{backendErrors.phoNo}</p>}
+                {touched.phoNo && errors.phoNo && <p className="text-danger">{errors.phoNo}</p>}
               </div>
               <div className="d-flex justify-content-between">
                 <button type="submit" className="btn btn-primary mt-3" disabled={loading}>
