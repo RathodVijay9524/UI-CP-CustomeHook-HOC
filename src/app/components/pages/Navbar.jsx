@@ -22,9 +22,9 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light" style={{ background: 'linear-gradient(to right, #0000ff 0%, #ff99cc 75%)', color: 'black' }}>
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">Navbar</a>
+          <a className="navbar-brand text-white" href="#">Admin Dasbhoard</a>
           <button
             className="navbar-toggler"
             type="button"
@@ -39,10 +39,10 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Home</a>
+                <a className="nav-link " aria-current="page" href="#">Home</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Link</a>
+                <a className="nav-link text-dark" href="#">Link</a>
               </li>
             </ul>
             <form className="d-flex" role="search">
@@ -52,10 +52,10 @@ const Navbar = () => {
                 placeholder="Search"
                 aria-label="Search"
               />
-              <button className="btn btn-outline-success" type="submit">Search</button>
+              <button className="btn btn-outline-success text-dark" type="submit">Search</button>
             </form>
             <button
-              className="btn btn-outline-primary ms-2"
+              className="btn btn-outline-primary ms-2 text-black"
               onClick={handleLoginLogout}
             >
               {isAuthenticated ? 'Logout' : 'Login'}
@@ -63,6 +63,8 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+
+
     </div>
   );
 };

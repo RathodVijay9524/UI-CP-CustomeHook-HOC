@@ -48,6 +48,11 @@ const LoginContainer = () => {
 };
 
 const navigateRole = (roles, navigate) => {
+  if (!roles || !Array.isArray(roles)) {
+    navigate('/not-authorized');
+    return;
+  }
+
   const roleNames = roles.map(role => role.name);
   if (roleNames.includes('ROLE_ADMIN')) {
     navigate('/admin');
@@ -59,5 +64,6 @@ const navigateRole = (roles, navigate) => {
     navigate('/not-authorized');
   }
 };
+
 
 export default LoginContainer;
