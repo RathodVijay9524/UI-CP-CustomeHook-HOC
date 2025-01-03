@@ -1,32 +1,25 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import useRegistration from '../../hook/useRegistration';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import useRegistration from '../../hook/useRegistration'; // Adjust path if necessary
 
 const RegisterForm = () => {
-  const initialFormState = {
-    name: '',
-    username: '',
-    email: '',
-    password: '',
-    phoNo: '',
-  };
+  const registrationEndpoint = '/auth/register/admin'; // Define the registration endpoint
 
   const {
     values,
     handleChange,
     resetForm,
+    handleSubmit,
     loading,
     error,
     success,
-    usernameAvailable,
-    emailAvailable,
-    handleSubmit,
+    backendErrors,
     checkUsernameAvailability,
     checkEmailAvailability,
-  } = useRegistration(initialFormState); // Use initialFormState
+    usernameAvailable,
+    emailAvailable,
+  } = useRegistration(registrationEndpoint); // Use useRegistration with the endpoint
 
   useEffect(() => {
     console.log('Username Available State:', usernameAvailable);
@@ -54,6 +47,7 @@ const RegisterForm = () => {
                   value={values.name}
                   onChange={handleChange}
                 />
+                {backendErrors.name && <p className="text-danger">{backendErrors.name}</p>}
               </div>
               <div className="form-group">
                 <label>Username:</label>
@@ -66,15 +60,10 @@ const RegisterForm = () => {
                   onBlur={checkUsernameAvailability}
                 />
                 {usernameAvailable === false && (
-                  <p className="text-danger">
-                    Username already exists! Choose another username.
-                  </p>
+                  <p className="text-danger">Username already exists! Choose another username.</p>
                 )}
-                {usernameAvailable === true && (
-                  <p className="text-success">
-                    Username is available
-                  </p>
-                )}
+                {usernameAvailable === true && <p className="text-success">Username is available</p>}
+                {backendErrors.username && <p className="text-danger">{backendErrors.username}</p>}
               </div>
               <div className="form-group">
                 <label>Email:</label>
@@ -87,15 +76,10 @@ const RegisterForm = () => {
                   onBlur={checkEmailAvailability}
                 />
                 {emailAvailable === false && (
-                  <p className="text-danger">
-                    Email already exists! Choose another email.
-                  </p>
+                  <p className="text-danger">Email already exists! Choose another email.</p>
                 )}
-                {emailAvailable === true && (
-                  <p className="text-success">
-                    Email is available
-                  </p>
-                )}
+                {emailAvailable === true && <p className="text-success">Email is available</p>}
+                {backendErrors.email && <p className="text-danger">{backendErrors.email}</p>}
               </div>
               <div className="form-group">
                 <label>Password:</label>
@@ -106,6 +90,7 @@ const RegisterForm = () => {
                   value={values.password}
                   onChange={handleChange}
                 />
+                {backendErrors.password && <p className="text-danger">{backendErrors.password}</p>}
               </div>
               <div className="form-group">
                 <label>Phone Number:</label>
@@ -116,6 +101,7 @@ const RegisterForm = () => {
                   value={values.phoNo}
                   onChange={handleChange}
                 />
+                {backendErrors.phoNo && <p className="text-danger">{backendErrors.phoNo}</p>}
               </div>
               <div className="d-flex justify-content-between">
                 <button type="submit" className="btn btn-primary mt-3" disabled={loading}>
