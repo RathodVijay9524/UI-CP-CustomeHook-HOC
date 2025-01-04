@@ -18,10 +18,11 @@ main {
 }
 
 /* Sidebar */
-.sidebar { 
-  background:  linear-gradient(to bottom, #6600ff 28%, #0000ff 100%);
-  color: white; 
-  height: 100vh; }
+.sidebar {
+  background: rgb(0, 7, 61);
+  color: white;
+  height: 100vh;
+}
 
 .top_section {
   display: flex;
@@ -52,7 +53,6 @@ main {
   margin-left: 10px;
   border-radius: 5px;
   background: rgb(238, 238, 238);
-
   color: white;
 }
 
@@ -69,6 +69,7 @@ main {
   padding: 5px 10px;
   border-right: 4px solid transparent;
   transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  text-decoration: none; /* Ensure no underline */
 }
 .link:hover {
   border-right: 4px solid white;
@@ -82,7 +83,44 @@ main {
 .link_text {
   white-space: nowrap;
   font-size: 15px;
-  text-decoration: none;
+}
+.navbar-fixed-top {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1020;
+}
+.margin-tops{
+  margin-top: 56.55px;
+}
+.margin-top {
+  margin-top: 65px; /* Adjust the value to your preference */
 }
 
 
+
+
+
+/*
+
+
+.link {
+  display: flex;
+  color: white;
+  gap: 10px;
+  padding: 5px 10px;
+  border-right: 4px solid transparent;
+  transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  text-decoration: none;
+}
+.link:hover {
+  border-right: 4px solid rgb(0, 255, 0);
+  background: rgb(0, 100, 0);
+  transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+.active {
+  border-right: 4px solid rgb(0, 255, 0);
+  background: rgb(0, 100, 0);
+}
+
+*/

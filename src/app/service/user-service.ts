@@ -16,7 +16,7 @@ const checkAvailability = async (value) => {
     return false;  // Default to false if error occurs
   }
 };
-
-
-
 export default checkAvailability;
+
+
+

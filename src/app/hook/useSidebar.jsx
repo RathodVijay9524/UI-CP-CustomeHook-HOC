@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const useSidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const toggle = () => setIsOpen(!false);
+  const toggle = () => setIsOpen(!isOpen);
 
   const inputAnimation = {
     hidden: {

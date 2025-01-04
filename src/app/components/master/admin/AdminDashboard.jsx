@@ -1,6 +1,6 @@
 const AdminDashboard = () => {
   return (
-    <div>
+    <div className="container">
       <h2>Admin Dashboard</h2>
       {/* Add your dashboard content here */}
     </div>
