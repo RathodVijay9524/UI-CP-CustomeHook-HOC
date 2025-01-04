@@ -6,11 +6,15 @@ import BaseWorker from '../components/master/BaseWorker';
 import BaseSuperUser from '../components/master/BaseSuperUser';
 import NotAuthorized from '../components/pages/NotAuthorized';
 import DynamicRoleComponent from '../components/master/DynamicRoleComponent';
+import ResetPasswordRequest from '../components/pages/ResetPasswordForm';
+import ResetPassword from '../components/pages/ResetPassword';
 
 
 const Router = () => {
   return (
     <Routes>
+      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/send-email" element={<ResetPasswordRequest />} />
       <Route path="/login" element={<LoginContainer />} />
       <Route path="/register" element={<RegisterForm />} />
       <Route
