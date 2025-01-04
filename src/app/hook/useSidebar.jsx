@@ -1,19 +1,8 @@
 import { useState } from "react";
-import { FaHome, FaUser } from "react-icons/fa";
-import { MdMessage } from "react-icons/md";
-import { BiAnalyse, } from "react-icons/bi";
-
-
-const routes = [
-  { path: "/admin/home", name: "Home", icon: <FaHome /> },
-  { path: "/user", name: "Users", icon: <FaUser /> },
-  { path: "/admin/dashboard", name: "Dashboard", icon: <MdMessage /> },
-  { path: "/admin/active-users", name: "Analytics", icon: <BiAnalyse /> },
-];
 
 const useSidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
+  const [isOpen, setIsOpen] = useState(true);
+  const toggle = () => setIsOpen(!false);
 
   const inputAnimation = {
     hidden: {
@@ -44,7 +33,6 @@ const useSidebar = () => {
   return {
     isOpen,
     toggle,
-    routes,
     inputAnimation,
     showAnimation,
   };
