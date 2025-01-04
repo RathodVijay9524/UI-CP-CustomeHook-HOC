@@ -15,7 +15,7 @@ const SideBar = ({ children }) => {
         { path: "/admin/home", name: "Home", icon: <FaHome /> },
         { path: "/user", name: "Users", icon: <FaUser /> },
         { path: "/admin/dashboard", name: "Dashboard", icon: <MdMessage /> },
-        { path: "/admin/analytics", name: "Analytics", icon: <BiAnalyse /> },
+        { path: "/admin/active-users", name: "Active Users", icon: <BiAnalyse /> },
     ];
 
     return (
