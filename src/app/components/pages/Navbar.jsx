@@ -1,30 +1,29 @@
 /* eslint-disable no-unused-vars */
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../../store/redux/authSlice'; // Import the logout action
-// Ensure Bootstrap JS for collapse functionality
+import { logout } from '../../store/redux/authSlice';
+
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated); // Get the authentication status from the Redux store
-  const user = useSelector((state) => state.auth.user); // Optionally, access the logged-in user details
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector((state) => state.auth.user);
 
   const handleLoginLogout = () => {
     if (isAuthenticated) {
-      dispatch(logout()); // Dispatch logout action to clear user state and tokens
+      dispatch(logout());
     } else {
-
-      navigate('/login'); // Navigate to login page
+      navigate('/login');
     }
   };
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light" style={{ background: 'linear-gradient(to right, #0000ff 0%, #ff99cc 75%)', color: 'black' }}>
+      <nav className="navbar navbar-expand-lg navbar-light navbar-fixed-top" style={{ background: 'linear-gradient(to right, #0000ff 0%, #ff99cc 75%)', color: 'black' }}>
         <div className="container-fluid">
-          <a className="navbar-brand text-white" href="#">Admin Dasbhoard</a>
+          <a className="navbar-brand text-white" href="#">Admin Dashboard</a>
           <button
             className="navbar-toggler"
             type="button"
@@ -63,8 +62,6 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-
-
     </div>
   );
 };

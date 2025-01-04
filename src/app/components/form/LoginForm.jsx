@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const LoginForm = ({ usernameOrEmail, setUsernameOrEmail, password, setPassword, loading, error, handleSubmit, message }) => (
-  <div className="container mt-5">
+  <div className="container margin-top">
     <div className="row justify-content-center">
       <div className="col-md-6">
         <div className="card shadow p-4">

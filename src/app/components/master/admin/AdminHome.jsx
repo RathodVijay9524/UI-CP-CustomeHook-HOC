@@ -1,6 +1,6 @@
 const AdminHome = () => {
   return (
-    <div>
+    <div className="container">
       <h2>Admin Home</h2>
       {/* Add your home content here */}
     </div>
